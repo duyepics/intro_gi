@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 import random
 
-API_BASE = "https://api.genshin.dev/characters"
+API_BASE = "https://gshimpact.vercel.app/api/characters"
 
 st.set_page_config(page_title="Genshin Character Explorer", page_icon="✨")
 
@@ -43,3 +43,4 @@ st.markdown(f"**Description:** {data.get('description', 'Không có mô tả �
 
 st.markdown("---")
 st.caption("Made with ❤️ by Duy (vọc chơi thôi mà làm đẹp quá 😆)")
+
