@@ -9,15 +9,27 @@ st.set_page_config(page_title="Genshin Character Explorer", page_icon="✨")
 st.title("🌸 Genshin Character Explorer")
 st.write("Khám phá thông tin nhân vật Genshin Impact một cách chill 😎")
 
-# Lấy danh sách nhân vật
-characters = requests.get(API_BASE).json()
+# --- FIX JSONDecodeError ---
+try:
+    res = requests.get(API_BASE)
+    res.raise_for_status()  # Kiểm tra lỗi HTTP
+    characters = res.json()
+except Exception as e:
+    st.error("Không thể tải danh sách nhân vật 😢 (API có thể đang lỗi)")
+    st.stop()
+
+# Giao diện chọn nhân vật
 selected_char = st.selectbox("Chọn nhân vật", characters)
 
 if st.button("🎲 Random nhân vật"):
     selected_char = random.choice(characters)
 
 # Lấy dữ liệu chi tiết
-data = requests.get(f"{API_BASE}/{selected_char}").json()
+try:
+    data = requests.get(f"{API_BASE}/{selected_char}").json()
+except Exception as e:
+    st.error("Không thể tải thông tin nhân vật 🥲")
+    st.stop()
 
 # Hiển thị thông tin
 st.subheader(f"{data.get('name', selected_char).title()}")
