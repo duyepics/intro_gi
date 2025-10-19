@@ -3,7 +3,8 @@ import requests
 import random
 
 # 👉 Dùng API chính thức từ GenshinDev
-API_BASE = "https://api.genshin.dev/characters"
+API_BASE = "https://raw.githubusercontent.com/genshindev/api-data/main/characters.json"
+
 
 st.set_page_config(page_title="Genshin Character Explorer", page_icon="✨")
 
@@ -47,3 +48,4 @@ st.markdown(f"**Description:** {data.get('description', 'Không có mô tả �
 
 st.markdown("---")
 st.caption("Made with ❤️ by Duy (vọc chơi thôi mà làm đẹp quá 😆)")
+
